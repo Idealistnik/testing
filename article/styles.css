@@ -1,0 +1,43 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+}
+.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+.tab {
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+.tab:hover {
+    background-color: aqua;
+    color: green;
+}
+.tab:active {
+    background-color: blueviolet;
+    color: white;
+}
+
+.flex {
+    display: flex;
+}
+.scroll-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: grey;
+    z-index: 1;
+}

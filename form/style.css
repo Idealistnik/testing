@@ -1,0 +1,29 @@
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.form {
+    width: 30%;
+    gap: 10px;
+    border: 1px black solid;
+    background-color: aquamarine;
+    padding: 15px;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+}
+
+.w-100 {
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Document</title>
+</head>
+
+<body class="body-font flex-center mg-0 h-100">
+    <main class="w-500">
+
+        <section class="flex-column gap-24 pg-16 shadow">
+
+            <h1 class="sr-only">Форма регистрации</h1>
+
+            <div class="flex-column gap-24">
+
+                <form action="nikitapavlov2015@gmail.com" method="post" class="flex-column form gap-16" id="form">
+                    <h2 class="mg-0 fs-20">Регистрация</h2>
+
+                    <label class="flex-column gap-8 fs-16"> Имя
+                        <div class="input-wrapper flex-column">
+                            <input type="text" class="fs-14 form-input border-box b-none grey b-radius-8" name="username"
+                                value="Артур" required>
+                            <span class="error-message fs-10">Ошибка</span>
+                        </div>
+
+                    </label>
+
+
+                    <label class="flex-column gap-8 fs-16"> Электронная почта
+                        <div class="input-wrapper flex-column">
+                            <input type="email" class="fs-14 form-input border-box b-none grey b-radius-8" name="email"
+                                value="example@mail.ru" required>
+                            <span class="error-message fs-10">Ошибка</span>
+                        </div>
+
+                    </label>
+
+                    <label class="flex-column gap-8 fs-16"> Пароль
+                        <div class="input-wrapper">
+                            <div class="pos-relative d-flex form-input border-box gap-8 b-none b-radius-8">
+                                <input type="password" class="fs-14 w-100 b-none grey" name="password"
+                                    value="******" minlength="6" required>
+                                <button class="show-pass flex-center b-none pointer">
+                                    <img src="./images/eye-off.png" alt="show/hide password">
+                                </button>
+                            </div>
+                            <span class="error-message fs-10">Ошибка</span>
+                        </div>
+
+
+                    </label>
+
+                    <label class="flex-column gap-8 fs-16"> Подтвердите пароль
+                        <div class="pos-relative d-flex form-input border-box gap-8 b-none b-radius-8">
+                            <input type="password" class="fs-14 w-100 b-none grey" name="confirm" value="******"
+                                minlength="6" required>
+                            <button class="show-pass border-box flex-center b-none pointer">
+                                <img src="./images/eye-off.png" alt="show/hide password-confirm">
+                            </button>
+                        </div>
+                    </label>
+
+                </form>
+
+                <button type="submit" form="form"
+                    class="bg-violet white fs-16 b-radius-8 b-none pointer">Зарегистрироваться</button>
+
+            </div>
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

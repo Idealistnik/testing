@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма регистрации</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script defer src="script.js"></script> -->
+</head>
+
+<body>
+    <section class="container flex">
+        <form action="" method="post" class="flex column form">
+
+            <label>Имя:
+                <input type="text" class="w-100" name="username" maxlength="50" placeholder="Введите имя" required>
+            </label>
+
+
+            <label for="email">Имейл:
+                <input type="email" class="w-100" id="email" name="email" placeholder="Введите имейл" required>
+            </label>
+
+
+            <label for="password">Пароль:
+                <input type="password" class="w-100" id="password" name="password" placeholder="Введите пароль"  minlength="8" required>
+            </label>
+
+
+            <label for="date">Дата рождения:
+                <!-- <input type="date" class="w-100" id="date" name="date"  max="2024-11-18" required> -->
+                <input type="date" class="w-100" id="date" name="date"  max="" required>
+            </label>
+
+
+            <label for="phonenumber">Номер телефона:
+                <input type="tel" class="w-100" id="phonenumber" name="phonenumber" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}" placeholder="+7 (XXX) XXX-XX-XX"
+                    required>
+            </label>
+
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </section>
+    <script src="script.js"></script>
+
+</body>
+
+
+</html>
