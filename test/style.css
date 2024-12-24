@@ -1,0 +1,30 @@
+.red {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  z-index: 1;
+  /* position: relative; */
+ 
+}
+.container {
+  display: relative;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.green {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+}
+
