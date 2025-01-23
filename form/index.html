@@ -14,34 +14,36 @@
         <form action="" method="post" class="flex column form">
 
             <label>Имя:
-                <input type="text" class="w-100" name="username" maxlength="50" placeholder="Введите имя" required>
+                <input type="text" class="w-100" name="username" maxlength="50" placeholder="Введите имя">
             </label>
 
 
             <label for="email">Имейл:
-                <input type="email" class="w-100" id="email" name="email" placeholder="Введите имейл" required>
+                <input type="email" class="w-100" id="email" name="email" placeholder="Введите имейл">
             </label>
 
 
             <label for="password">Пароль:
-                <input type="password" class="w-100" id="password" name="password" placeholder="Введите пароль"  minlength="8" required>
+                <!-- <input type="password" class="w-100" id="password" name="password" placeholder="Введите пароль"  minlength="8" required> -->
+                <input type="password" class="w-100" id="password" name="password" placeholder="Введите пароль">
             </label>
 
 
             <label for="date">Дата рождения:
                 <!-- <input type="date" class="w-100" id="date" name="date"  max="2024-11-18" required> -->
-                <input type="date" class="w-100" id="date" name="date"  max="" required>
+                <input type="date" class="w-100" id="date" name="date"  max="">
             </label>
 
 
             <label for="phonenumber">Номер телефона:
                 <input type="tel" class="w-100" id="phonenumber" name="phonenumber" pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}" placeholder="+7 (XXX) XXX-XX-XX"
-                    required>
+                    >
             </label>
 
 
             <button type="submit">Зарегистрироваться</button>
         </form>
+
     </section>
     <script src="script.js"></script>
 

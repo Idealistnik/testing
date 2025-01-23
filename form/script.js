@@ -14,10 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // document.getElementById('date').setAttribute('max', currentDate);
 
-document.querySelector('form').addEventListener('submit', (e) => {
-e.preventDefault();
-alert('Форма отправлена!');
-});
+// document.querySelector('form').addEventListener('submit', (e) => {
+// e.preventDefault();
+// alert('Форма отправлена!');
+// });
+
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    console.log([...data.entries()]);
+    console.log(Object.fromEntries(data));
+})
+
 
 
 
