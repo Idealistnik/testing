@@ -1,3 +1,8 @@
+// import util from 'util';
+// import fs from 'fs';
+// import func from "lodash/fp/at.js";
+
+
 // import { bstr, buf, str } from "crc-32/crc32c";
 // import { set } from 'lodash';
 // import isObject from 'lodash/isObject.js';
@@ -186,39 +191,295 @@
 //   { item: { name: 'car', price: 3 }, count: 5 },
 //   { item: { name: 'house', price: 10 }, count: 2 },
 // ]
-class Cart {
-    items = [];
-    constructor() {
-    }
-    addItem(item, count) {
-        this.items.push({item, count});
-    }
-    getCost() {
-        return this.items.reduce((accumulator, el) => {
-            accumulator += (el.item.price * el.count);
-            return accumulator;
-        }, 0);
+// const obj = {
+//     name: 'John Smith',
+//     surname: 'John Smith',
+//     more: true,
 
-    }
-    getItems() {
-        return this.items;
-    }
-    getCount() {
-        return this.items.reduce((acc, {count}) => {acc += count; return acc;}, 0)
-    }
-}
-
-const cart = new Cart();
-cart.addItem({ name: 'car', price: 3 }, 5);
-cart.addItem({ name: 'house', price: 10 }, 2);
+//
+// let counter = 0;
+// let id = setTimeout(function inner() {
+//     counter += 1;
+//     console.log(counter);
+//     if (counter === 5) {
+//         clearTimeout(id);
+//         return;
+//     }
+//     id = setTimeout(inner, 1000);
+// }, 1000);
 
 
-console.log(cart.getCount());
-// cart.getCost(); // 35
-// cart.getItems();
-// [
-//   { item: { name: 'car', price: 3 }, count: 5 },
-//   { item: { name: 'house', price: 10 }, count: 2 },
-// ]
+// const func = (count) => {
+//     const innerFunc = (current) => {
+//         console.log(current);
+//         if (current >= count) {
+//             return;
+//         }
+//         setTimeout(innerFunc, 1000, current + 1);
+//     }
+//     innerFunc(0);
+// }
+// func(5);
+
+// const printNumbers = (from, to) => {
+//     let current = from;
+//     const id = setInterval(() => {
+//         console.log(current);
+//         current += 1;
+//         if (current > to) {
+//             clearInterval(id);
+//         }
+//     }, 1000);
+// };
+// printNumbers(1, 5)
+
+//
+// const printNumbers = (from, to) => {
+//     let current = from;
+//     let id = setTimeout(function inner() {
+//         console.log(current);
+//         if (current === to) {
+//             clearTimeout(id);
+//             return;
+//         }
+//         current += 1;
+//         id = setTimeout(inner, 1000);
+//     }, 1000);
+// };
+// printNumbers(1, 5);
+
+
+// const promiseWithTimeout = async (promise, timeout) => {
+//     const timeoutPromise = new Promise((_resolve, reject) => {
+//         setTimeout(() => reject('Timeout'), timeout);
+//     });
+//     try {
+//         await Promise.race([promise, timeoutPromise]);
+//     } catch (e) {
+//         throw e;
+//     }
+// };
+
+//
+// const promiseWithTimeout = (promise, timeout) => {
+//     return new Promise((resolve, reject) => {
+//         const id = setTimeout(() => reject('Timeout'), timeout);
+//         promise
+//             .then((data) => {
+//                 clearTimeout(id);
+//                 resolve(data);
+//             })
+//             .catch((err) => {
+//                 clearTimeout(id);
+//                 reject(err);
+//             })
+//     })
+// };
+
+//
+// const slowPromise = new Promise((resolve) => setTimeout(() => resolve("Done"), 3000));
+// promiseWithTimeout(slowPromise, 2000)
+//     .then(res => console.log(res))
+//     .catch(console.error); // "Timeout"
+
+
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
+// Задача 5. Отложенный вывод
+//
+// Напишите функцию delayedLog, которая принимает массив строк и выводит каждую строку с задержкой в 1 секунду.
+// delayedLog(["Hello", "world", "!"]);
+// Через 1 секунду: "Hello"
+// Через 2 секунды: "world"
+// Через 3 секунды: "!"
+
+// const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+// const delay = async (col) => {
+//     for (const str of col) {
+//         await timeout(1000);
+//         console.log(str);
+//     }
+// };
+
+// const delay = (col) => {
+//     col.forEach((str, index) => setTimeout(() => console.log(str), (index + 1) * 1000));
+// };
+// const arr = ['1', '2', '3'];
+// delay(arr);
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
+
+// 1. Последовательное выполнение (без использования статических методов)
+//
+// Напишите функцию sequentialTasks, которая принимает массив функций, возвращающих промисы.
+// // Функция должна выполнять промисы строго последовательно и возвращать массив их результатов.
+
+// const sequentialTasks = (tasks) => {
+//     const initialPromise = Promise.resolve([]);
+//     return tasks.reduce((acc, task) => acc.then((result) => task().then((taskResult) => result.concat(taskResult))), initialPromise);
+// };
+// const sequentialTasks = (tasks) => {
+//     let result = Promise.resolve([]);
+//     for (const task of tasks) {
+//         result = result.then((result) => task().then((taskResult) => result.concat(taskResult)));
+//     }
+//     return result;
+// };
+//
+// const tasks = [
+//     () => Promise.resolve(1),
+//     () => Promise.resolve(2),
+//     () => Promise.resolve(3),
+// ];
+//
+// sequentialTasks(tasks).then(console.log);
+
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
+
+// Таймаут для промиса (написать реализацию на чистых промисах, затем через async/await)
+//
+// Напишите функцию promiseWithTimeout, которая принимает промис и число timeout в миллисекундах.
+//     Если промис не выполнится за заданное время, он должен быть отклонен с ошибкой "Timeout".
+//     const slowPromise = new Promise((resolve) => setTimeout(() => resolve("Done"), 3000));
+
+// const promiseWithTimeout = (promise, timeout) => {
+//     const timeoutPromise = new Promise((resolve, reject) => setTimeout(() => reject('Timeout'), timeout));
+//     return Promise.race([promise, timeoutPromise]);
+// };
+// const promiseWithTimeout = async (promise, timeout) => {
+//     const timeoutPromise = new Promise((resolve, reject) => setTimeout(() => reject('Timeout'), timeout));
+//     const result = await Promise.race([promise, timeoutPromise]);
+//     return result;
+// };
+
+// const promiseWithTimeout = (promise, timeout) => {
+//     return new Promise((resolve, reject) => {
+//         const id = setTimeout(() => reject('Timeout'), timeout);
+//         return promise.then((res) => {
+//             clearTimeout(id);
+//             resolve(res);
+//         }).catch((err) => {
+//             clearTimeout(id);
+//             reject(err);
+//             throw err;
+//         })
+//     })
+// };
+// const promiseWithTimeout = async (promise, timeout) => {
+//     let id;
+//     const promiseTimeout = new Promise((resolve, reject) => {
+//         id = setTimeout(() => {
+//             reject('Timeout');
+//         }, timeout);
+//     });
+//     try {
+//         const result = await Promise.race([promiseTimeout, promise]);
+//         clearTimeout(id);
+//         return result;
+//     } catch (err) {
+//         clearTimeout(id);
+//         throw err;
+//     }
+// };
+// //
+// const slowPromise = new Promise((resolve) => setTimeout(() => resolve("Done"), 3000));
+//
+// promiseWithTimeout(slowPromise, 2000)
+//     .then((res) => console.log(res))
+//     .catch(console.error); // "Timeout"
+
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
+
+// 3. Реализация Promise.all (по желанию)
+//
+// Напишите собственную реализацию функции customPromiseAll, которая принимает массив промисов
+// и возвращает промис, разрешающийся массивом их результатов. Если хотя бы один промис отклонен,
+//     общий промис должен быть отклонен.
+
+// const customPromiseAll = (col) => {
+//     let initialPromise = Promise.resolve([]);
+//     for (const promise of col) {
+//         initialPromise = initialPromise.then((result) => promise.then((currentResult) => result.concat(currentResult)));
+//     }
+//     return initialPromise;
+// };
+//
+//
+// const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
+// customPromiseAll(promises)
+//     .then(console.log) // [1, 2, 3]
+//     .catch(console.log);
+// Таблицу с id="age-table".
+//     Все элементы label внутри этой таблицы (их три).
+// Первый td в этой таблице (со словом «Age»).
+// Форму form с именем name="search".
+//     Первый input в этой форме.
+//     Последний input в этой форме.
+// showNotification({
+//     top: 10, // 10px от верхней границы окна (по умолчанию 0px)
+//     right: 10, // 10px от правого края окна (по умолчанию 0px)
+//     html: "Hello!", // HTML-уведомление
+//     className: "welcome" // дополнительный класс для div (необязательно)
+// });
+
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
+// 4. Динамическая фильтрация списка
+//
+// Напишите функцию createFilterableList, которая принимает массив строк. Функция должна создать:
+//     • Поле ввода <input> для фильтрации.
+//  • Список <ul> со всеми строками в виде <li>.
+//
+// При вводе текста в поле ввода, список должен обновляться, отображая только те элементы, которые содержат введённый текст.
+
+// const createListItem = (word) => {
+//     const li = document.createElement('li');
+//     li.textContent = word;
+//     return li;
+// };
+//
+// const createStartHtml = () => {
+//     const input = document.createElement('input');
+//     input.setAttribute('type', 'text');
+//     const ul = document.createElement('ul');
+//     document.body.append(input, ul);
+// };
+//
+// const render = (state) => {
+//     const ul = document.querySelector('ul');
+//     const list = state.wordList
+//         .filter((item) => item.includes(state.filterWord))
+//         .map((item) => createListItem(item));
+//     ul.innerHTML = '';
+//     ul.append(...list);
+// };
+//
+// const createFilterableList = (list) => {
+//     const state = {
+//         wordList: list,
+//         filterWord: '',
+//     };
+//     createStartHtml();
+//     const input = document.querySelector('input');
+//     input.addEventListener('input', (e) => {
+//         state.filterWord = e.target.value;
+//         render(state);
+//     });
+//     render(state);
+// };
+//
+// const words = ['hello', 'world', 'goodbye'];
+// createFilterableList(words);
+
+// =============================================================================================================
+// =============================================================================================================
+// =============================================================================================================
 
 
